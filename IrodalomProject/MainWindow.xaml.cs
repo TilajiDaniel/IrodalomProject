@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using IrodalomProject.Models;
+using Microsoft.Win32;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,14 +20,50 @@ namespace IrodalomProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static List<Kerdes> kerdesek = new List<Kerdes>();
+        private static int aktualisIndex = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private static void KerdeseketFeltolt(string fileName)
+        {
+            {
+                kerdesek.Clear();
+                try
+                {
+                    StreamReader sr = new 
+                }
+            }
+        }
         private void Betoltes_Click(object sender, RoutedEventArgs e)
         {
-            
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "TXT fájlok(*.txt)|*.txt ";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    KerdeseketFeltolt(openFileDialog.FileName);
+                    MessageBox.Show("Sikeres betöltés!", "Információ", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    if (kerdesek.Count > 0)
+                    {
+                        aktualisIndex = 0;
+                        MutatKerdes(aktualisIndex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);  
+                }
+            }
+        }
+
+        private void MutatKerdes(int aktualisIndex)
+        {
+            throw new NotImplementedException();
         }
 
         private void Kilepes_Click(object sender, RoutedEventArgs e)
