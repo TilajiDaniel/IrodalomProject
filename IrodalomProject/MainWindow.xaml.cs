@@ -35,5 +35,18 @@ namespace IrodalomProject
         {
 
         }
+        private void ElozoClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void KovetkezoClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void ValaszMenteseClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
