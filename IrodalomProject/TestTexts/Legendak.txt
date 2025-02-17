@@ -1,0 +1,10 @@
+﻿1;Ki volt a gömöri fuvaros, aki a kocsonyában találkozott a békával?;Pali;Potyka Kati;A gömöri fuvaros
+2;Hol történt a béka legendája a kocsonyában?;Miskolcon;Bató-ház;Szentpéteri Kapu
+3;Mi történt Annával és Palival a molnár legendájában?;Összeházasodtak;Más faluba költöztek;Leugrottak a szikláról
+4;Hol született Bató Eszter?;Lillafüreden;Piskóty;Miskolcon
+5;Mi történt Eszterrel?;Megölték;Külföldre költözött;Tüdőgyulladásban meghalt
+6;Mi volt a neve annak a harangnak, amit Bató István készíttetett a lánya számára?;Ezüst harang;A Deszka harang;Az Eszter harang
+7;Hol rejtették el az igazság poharát a török ostrom alatt?;Szinván;Bató-ház;Avas
+8;Mi volt a pohárban az igazság legendája szerint?;Víz;Sör;Igazságszérum
+9;Melyik verset írta József Attila Lillafüreden?;A Szív;A Város;Az Óda
+10;Ki volt az a nő, akibe József Attila beleszeretett Lillafüreden?;Anna;Eszter;Marton Márta
