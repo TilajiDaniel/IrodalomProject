@@ -22,5 +22,18 @@ namespace IrodalomProject
             InitializeComponent();
         }
 
+        private void Betoltes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Kiertekeles_CLick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
