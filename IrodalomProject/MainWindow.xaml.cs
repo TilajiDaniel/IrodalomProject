@@ -1,19 +1,19 @@
-﻿using IrodalomProject.Models;
-using Microsoft.Win32;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Collections.Generic;
+using IrodalomProjekt.Models;
+using Microsoft.Win32;
 
-namespace IrodalomProject
+namespace IrodalomProjekt
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,28 +26,16 @@ namespace IrodalomProject
         {
             InitializeComponent();
         }
-
-        private static void KerdeseketFeltolt(string fileName)
-        {
-            {
-                kerdesek.Clear();
-                try
-                {
-                    StreamReader sr = new 
-                }
-            }
-        }
-        private void Betoltes_Click(object sender, RoutedEventArgs e)
+        private void KerdesBetoltes(string fileName)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "TXT fájlok(*.txt)|*.txt ";
-            if(openFileDialog.ShowDialog() == true)
+            openFileDialog.Filter = "TXT fájlok (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
-                    KerdeseketFeltolt(openFileDialog.FileName);
-                    MessageBox.Show("Sikeres betöltés!", "Információ", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    KerdesBetoltes(openFileDialog.FileName);
+                    MessageBox.Show("Sikeres betöltés!", "Információ", MessageBoxButton.OK);
                     if (kerdesek.Count > 0)
                     {
                         aktualisIndex = 0;
@@ -56,9 +44,10 @@ namespace IrodalomProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);  
+                    MessageBox.Show($"Hiba történt a fájl betöltése közben: {ex.Message}");
                 }
             }
+
         }
 
         private void MutatKerdes(int aktualisIndex)
@@ -66,26 +55,34 @@ namespace IrodalomProject
             throw new NotImplementedException();
         }
 
+        private void Betoltes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Kilepes_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void Kiertekeles_CLick(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void ElozoClick(object sender, RoutedEventArgs e)
+
+        private void Elozo_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-        private void KovetkezoClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        private void ValaszMenteseClick(object sender, RoutedEventArgs e)
-        {
-            
+
         }
 
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Kovetkezo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
