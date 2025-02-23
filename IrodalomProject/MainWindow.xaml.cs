@@ -52,7 +52,21 @@ namespace IrodalomProjekt
 
         private void MutatKerdes(int aktualisIndex)
         {
-            throw new NotImplementedException();
+            if (kerdesek.Count > 0 && aktualisIndex >= 0 && aktualisIndex < kerdesek.Count)
+            {
+                var kerdes = kerdesek[aktualisIndex];
+                KerdesTextBlock.Text = kerdes.Kerdelem;  
+                ValaszPanel.Children.Clear();  
+
+                foreach (var valasz in kerdes.Valaszok)
+                {
+                    RadioButton rb = new RadioButton
+                    {
+                        Content = valasz
+                    };
+                    ValaszPanel.Children.Add(rb);
+                }
+            }
         }
 
         private void Betoltes_Click(object sender, RoutedEventArgs e)
@@ -72,15 +86,23 @@ namespace IrodalomProjekt
 
         private void Elozo_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Mentes_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (aktualisIndex > 0)
+            {
+                aktualisIndex--;
+                MutatKerdes(aktualisIndex);
+            }
         }
 
         private void Kovetkezo_Click(object sender, RoutedEventArgs e)
+        {
+            if (aktualisIndex < kerdesek.Count - 1)
+            {
+                aktualisIndex++;
+                MutatKerdes(aktualisIndex);
+            }
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
         {
 
         }
