@@ -79,11 +79,6 @@ namespace IrodalomProjekt
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Elozo_Click(object sender, RoutedEventArgs e)
         {
             if (aktualisIndex > 0)
@@ -106,5 +101,6 @@ namespace IrodalomProjekt
         {
 
         }
+
     }
 }
