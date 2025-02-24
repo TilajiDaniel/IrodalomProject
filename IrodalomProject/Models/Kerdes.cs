@@ -12,20 +12,17 @@ namespace IrodalomProjekt.Models
         public string ValaszA { get; set; }
         public string ValaszB { get; set; }
         public string ValaszC { get; set; }
-        public string ValaszD { get; set; }
         public string HelyesValasz { get; set; }
-        public string FelhasznaloValasz { get; set; }
+        public string? FelhasznaloValasz { get; set; }
 
 
-        public Kerdes(string KerdesSzovege, string ValaszA, string ValaszB, string ValaszC, string ValaszD, string HelyesValasz, string FelhasznaloValasz)
+        public Kerdes(string KerdesSzovege, string ValaszA, string ValaszB, string ValaszC, string HelyesValasz)
         {
             this.KerdesSzovege = KerdesSzovege;
             this.ValaszA = ValaszA;
             this.ValaszB = ValaszB;
             this.ValaszC = ValaszC;
-            this.ValaszD = ValaszD;
             this.HelyesValasz = HelyesValasz;
-            this.FelhasznaloValasz = FelhasznaloValasz;
         }
 
         /// <summary>  

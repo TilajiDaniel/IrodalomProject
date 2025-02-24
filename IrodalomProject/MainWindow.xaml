@@ -23,7 +23,7 @@
                     Content="Betöltés"
                     Margin="5"
                     VerticalAlignment="Top"
-                    Click="Kilepes_Click"/>
+                    Click="Betoltes_Click"/>
 			<Button DockPanel.Dock="Bottom"
                     Content="Kilépés"
                     Margin="5"
@@ -31,7 +31,7 @@
 			<Button DockPanel.Dock="Top"
                     Content="Kiértékelés"
                     Margin="5"
-                    Click="Button_Click"/>
+                    Click="Kiertekeles_Click"/>
 			<TextBlock Text="Eredmény"
                        Background="Beige"
                        x:Name="tbkEredmeny"/>

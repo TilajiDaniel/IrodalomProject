@@ -10,8 +10,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections.Generic;
-using IrodalomProjekt.Models;
 using Microsoft.Win32;
+using IrodalomProjekt.Models;
 
 namespace IrodalomProjekt
 {
@@ -26,59 +26,62 @@ namespace IrodalomProjekt
         {
             InitializeComponent();
         }
-        private void KerdesBetoltes(string fileName)
+
+        private static void KerdesBetoltes(string fileName)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "TXT fájlok (*.txt)|*.txt";
-            if (openFileDialog.ShowDialog() == true)
+
+            kerdesek.Clear();
+            try
             {
-                try
+                StreamReader sr = new StreamReader(fileName, Encoding.UTF8);
+                while (!sr.EndOfStream)
                 {
-                    KerdesBetoltes(openFileDialog.FileName);
-                    MessageBox.Show("Sikeres betöltés!", "Információ", MessageBoxButton.OK);
-                    if (kerdesek.Count > 0)
-                    {
-                        aktualisIndex = 0;
-                        MutatKerdes(aktualisIndex);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Hiba történt a fájl betöltése közben: {ex.Message}");
+                    string kerdesSzovege = sr.ReadLine();
+                    string valaszA = sr.ReadLine();
+                    string valaszB = sr.ReadLine();
+                    string valaszC = sr.ReadLine();
+                    string helyesValasz = sr.ReadLine();
+                    Kerdes kerdes = new Kerdes(kerdesSzovege, valaszA, valaszB, valaszC, helyesValasz);
+                    kerdesek.Add(kerdes);
                 }
             }
-
-        }
-
-        private void MutatKerdes(int aktualisIndex)
-        {
-            if (kerdesek.Count > 0 && aktualisIndex >= 0 && aktualisIndex < kerdesek.Count)
+            catch (Exception ex)
             {
-                var kerdes = kerdesek[aktualisIndex];
-                KerdesTextBlock.Text = kerdes.Kerdelem;  
-                ValaszPanel.Children.Clear();  
-
-                foreach (var valasz in kerdes.Valaszok)
-                {
-                    RadioButton rb = new RadioButton
-                    {
-                        Content = valasz
-                    };
-                    ValaszPanel.Children.Add(rb);
-                }
+                throw new Exception("Hiba a fájl olvasása közben: " + ex.Message);
             }
         }
 
-        private void Betoltes_Click(object sender, RoutedEventArgs e)
+        private void MutatKerdes(int index)
         {
-
+            Kerdes kered = kerdesek[index];
+            tbkKerdesSzovege.Text = kered.KerdesSzovege;
+            ValaszA.Content = kered.ValaszA;
+            ValaszB.Content = kered.ValaszB;
+            ValaszC.Content = kered.ValaszC;
+            switch (kered.FelhasznaloValasz)
+            {
+                case "A":
+                    ValaszA.IsChecked = true;
+                    ValaszB.IsChecked = false;
+                    ValaszC.IsChecked = false;
+                    break;
+                case "B":
+                    ValaszA.IsChecked = false;
+                    ValaszB.IsChecked = true;
+                    ValaszC.IsChecked = false;
+                    break;
+                case "C":
+                    ValaszA.IsChecked = false;
+                    ValaszB.IsChecked = false;
+                    ValaszC.IsChecked = true;
+                    break;
+                default:
+                    ValaszA.IsChecked = false;
+                    ValaszB.IsChecked = false;
+                    ValaszC.IsChecked = false;
+                    break;
+            }
         }
-
-        private void Kilepes_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Elozo_Click(object sender, RoutedEventArgs e)
         {
             if (aktualisIndex > 0)
@@ -96,8 +99,55 @@ namespace IrodalomProjekt
                 MutatKerdes(aktualisIndex);
             }
         }
+        private void Betoltes_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "TXT fájlok (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    KerdesBetoltes(openFileDialog.FileName);
+                    MessageBox.Show("Sikeres betöltés!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (kerdesek.Count > 0)
+                    {
+                        aktualisIndex = 0;
+                        MutatKerdes(aktualisIndex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+            if(aktualisIndex <kerdesek.Count)
+            {
+                if (ValaszA.IsChecked == true)
+                {
+                    kerdesek[aktualisIndex].FelhasznaloValasz = "A";
+                }
+                else if (ValaszB.IsChecked == true)
+                {
+                    kerdesek[aktualisIndex].FelhasznaloValasz = "B";
+                }
+                else if (ValaszC.IsChecked == true)
+                {
+                    kerdesek[aktualisIndex].FelhasznaloValasz = "C";
+                }
+            }
+            MessageBox.Show("Válasz mentve!", "Információ");
+        }
+
+        private void Kiertekeles_Click(object sender, RoutedEventArgs e)
         {
 
         }
