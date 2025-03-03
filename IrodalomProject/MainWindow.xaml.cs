@@ -124,7 +124,7 @@ namespace IrodalomProjekt
 
         private void Kilepes_Click(object sender, RoutedEventArgs e)
         {
-            
+            close();
         }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
@@ -148,9 +148,20 @@ namespace IrodalomProjekt
         }
 
         private void Kiertekeles_Click(object sender, RoutedEventArgs e)
+{
+    int helyesValaszok = 0;
+    
+    foreach (var kerdes in kerdesek)
+    {
+        if (kerdes.FelhasznaloValasz == kerdes.HelyesValasz)
         {
-
+            helyesValaszok++;
         }
+    }
+
+    MessageBox.Show($"Összesen {kerdesek.Count} kérdés volt.\nHelyes válaszok: {helyesValaszok}", "Értékelés", MessageBoxButton.OK, MessageBoxImage.Information);
+}
+
 
     }
 }
